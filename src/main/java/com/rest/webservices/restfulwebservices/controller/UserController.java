@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class UserController {
 	@Autowired
 	PostRepository postRepository;
 	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping(path="/users")
 	public List<User> getAllUsers() {
 	//public MappingJacksonValue getAllUsers() {
@@ -52,6 +54,7 @@ public class UserController {
 		return users;
 	}
 	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping(path="/users/{id}")
 	public EntityModel<User> getUser(@PathVariable int id) {
 		Optional<User> user = userRepository.findById(id);
@@ -69,6 +72,7 @@ public class UserController {
 		
 	}
 	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping(path="/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 		
@@ -78,6 +82,7 @@ public class UserController {
 		
 	}
 	
+	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping(path="/users/{id}")
 	public ResponseEntity<Object> deleteUser(@PathVariable int id) {
 		
